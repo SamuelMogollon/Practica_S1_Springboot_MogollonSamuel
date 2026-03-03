@@ -28,18 +28,17 @@ public class VentaServiceImpl implements VentaService {
 
     @Override
     public VentaResponseDTO guardarVenta(VentaRequestDTO dto) {
-        Producto p = productoRepository.findById(dto.productoId()).orElseThrow(()->new RuntimeException("Error, no existe dicho producto"));
+        Producto p = productoRepository.findById(dto.idProducto()).orElseThrow(()->new RuntimeException("Error, no existe dicho producto"));
         Venta ve = ventaMapper.DTOAEntidad(dto, p);
         Venta ve_insertada = ventaRepository.save(ve);
         ProductoResponseDTO dtoProducto = productoMapper.entidadADTO(p);
         return ventaMapper.entidadADTO(ve_insertada,dtoProducto);
-
     }
 
     @Override
     public VentaResponseDTO actualizarVenta(VentaRequestDTO dto, Long id) {
         Venta ve=ventaRepository.findById(id).orElseThrow(()->new RuntimeException("Error, no existe dicha venta a actualizar"));
-        Producto p= productoRepository.findById(dto.productoId()).orElseThrow(()->new RuntimeException("Error, no existe dicho producto"));
+        Producto p= productoRepository.findById(dto.idProducto()).orElseThrow(()->new RuntimeException("Error, no existe dicho producto"));
         ventaMapper.actualizarEntidadDesdeDTO(ve, dto, p);
         Venta ve_actualizada=ventaRepository.save(ve);
         ProductoResponseDTO dtoProducto=productoMapper.entidadADTO(p);

@@ -28,7 +28,7 @@ public class Venta {
     private String metodoPago;
     @Column
     private String estado;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_producto")
     private Producto producto;
     @OneToMany(mappedBy = "venta",

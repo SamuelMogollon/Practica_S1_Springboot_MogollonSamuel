@@ -22,5 +22,5 @@ public record VentaRequestDTO(@NotNull(message = "El total es obligatorio.")
                               @NotBlank(message = "El estado no puede estar vacío.")
                               @Size(max = 50, message = "El estado no puede superar 50 caracteres")
                               String estado,
-                              Long productoId) {
+                              Long idProducto) {
 }

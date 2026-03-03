@@ -7,21 +7,36 @@ import com.s1.gestion_producto.model.Producto;
 import com.s1.gestion_producto.model.Venta;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 @Component
 public class VentaMapper {
     public VentaResponseDTO entidadADTO(Venta venta) {
+        if (venta == null) return null;
+        Producto p = venta.getProducto();
+        ProductoResponseDTO productoDTO = null;
 
+        if (p != null) {
+            productoDTO = new ProductoResponseDTO(
+                    p.getId(),
+                    p.getNombre(),
+                    p.getDescripcion(),
+                    p.getPrecio(),
+                    p.getActivo()
+            );
+        }
         return new VentaResponseDTO(
                 venta.getId(),
                 venta.getFecha(),
                 venta.getTotal(),
                 venta.getEstado(),
-                null
+                productoDTO
         );
     }
     public static Venta DTOAEntidad(VentaRequestDTO dto, Producto p){
         if (dto == null) return null;
         Venta ve = new Venta();
+        ve.setFecha(LocalDate.now());
         ve.setTotal(dto.total());
         ve.setMetodoPago(dto.metodoPago());
         ve.setEstado(dto.estado());

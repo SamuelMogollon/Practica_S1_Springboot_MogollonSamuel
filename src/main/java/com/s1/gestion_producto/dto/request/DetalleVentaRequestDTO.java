@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-public record DetalleVentaRequestDTO(@NotNull(message = "El id del producto es obligatorio.")
+public record DetalleVentaRequestDTO(@NotNull(message = "El subtotal es obligatorio.")
                                      BigDecimal subtotal,
                                      @NotNull(message = "La cantidad es obligatoria.")
                                      @Min(value = 1, message = "La cantidad debe ser al menos 1")
