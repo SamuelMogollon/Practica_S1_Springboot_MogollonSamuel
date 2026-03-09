@@ -1,0 +1,4 @@
+package com.s1.gestion_producto.auth;
+
+public record LoginResponse(String token) {
+}
