@@ -30,6 +30,7 @@ public class DetalleVentaMapper {
         dv.setSubtotal(dto.subtotal());
         dv.setVenta(venta);
         dv.setProducto(producto);
+        dv.setPrecioUnitario(producto.getPrecio());
 
         return dv;
     }
